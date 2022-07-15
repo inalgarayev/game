@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	  <meta name="description" content="Starting with WebXR">
+   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+     <script >    
+       AFRAME.registerComponent('opanel-component', {
+    init: function(){
+    let el = this.el;
+    el.addEventListener("model-loaded", e =>{
+      var testarray = [];
+      el.object3D.traverse (function (child) {
+      console.log(child.name);
+      testarray.push( child.name );
+         if(child.name == "Torus001")
+          {
+          child.material =  new THREE.MeshPhongMaterial( { 
+          color: '#ffffff',
+          specular: '#ffffff',
+          shininess: 100,
+transparent : true,
+opacity: 0.5,
+refractionRatio: 0.5
+          } );
+          }
+          });
+    });
+        
+    }}); 
+</script>
+</head>
+<body>
+<!-- Overlay - on click start playing the videos in scene  -->
+<div id="overlay" onclick="off();startVideo();">
+  <div id="text">Overlay Text</div>
+</div>
+
+<!-- Side Menu -->
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <p class="collapsible">Navigation</p>
+      <div class="content">
+        <a href="#" onclick="movetoPanel('#slideshow')">
+            Presentation Board
+        </a>
+        <a href="#" onclick="movetoPanel('#Panel1')">
+            1 - Modern UX
+        </a>
+        <a href="#" onclick="movetoPanel('#Panel2')">
+            2 - XR Lab
+        </a>
+        <a href="#" onclick="movetoPanel('#Panel3')">
+            3 - Customer First
+        </a>
+        <a href="#" onclick="movetoPanel('#Panel4')">
+            4 - The Voice of Employees
+        </a>
+        <a href="#" onclick="movetoPanel('#Panel5')">
+            5 - ITV's Got Talent
+        </a>
+        <a href="#" onclick="movetoPanel('#Panel6')">
+            6 - The Opportunity Marketplace
+        </a>
+      </div>
+    <p class="collapsible">Options</p>
+      <div class="content">
+        <a href="#" onclick="on(welcometext);">
+            Show Instructions
+        </a>
+        <a href="#" id="myEnterVRButton">
+            VR Mode
+        </a>
+      </div>        
+    <!--
+      <p>Options</p>
+      <a href="#" id="Activate_Webcam">
+        Activate Webcam
+    </a>
+    <a href="#" id="Activate_Chatbot">
+        Activate Chatbot
+    </a><br/>
+  -->
+</div>
+
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰ Menu</button> 
+</div>
+
+<!-- A SCENE -->
+
+<a-scene vr-mode-ui="enterVRButton: #myEnterVRButton;" cursor="rayOrigin: mouse">
+  
+  <a-assets>
+
+ <!-- Oculus support 
+    <a-asset-item id="touchleft-obj" src="//xrlab.ddns.net/WebXR/oculus-touch-controller-left.obj"></a-asset-item>
+    <a-asset-item id="touchleft-mtl" src="//xrlab.ddns.net/WebXR/oculus-touch-controller-left.mtl"></a-asset-item>        
+    <a-asset-item id="touchright-obj" src="//xrlab.ddns.net/WebXR/oculus-touch-controller-right.obj"></a-asset-item>
+    <a-asset-item id="touchright-mtl" src="//xrlab.ddns.net/WebXR/oculus-touch-controller-right.mtl"></a-asset-item>
+--> 
+
+<!-- Logo to be displayed on top of the doors -->
+ <a-img id="roomlogo" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/logo%20O.jpg"></a-img>
+    
+ <!-- Pictures to be displayed on the panels -->
+    <a-img id="Panel001" src="https://raw.githubusercontent.com/WSPluta/webxr102/main/rbr.jpeg"></a-img>
+    <a-img id="Panel002" src="https://raw.githubusercontent.com/WSPluta/webxr102/main/rbr.jpeg"></a-img>
+    <a-img id="Panel003" src="https://raw.githubusercontent.com/WSPluta/webxr102/main/rbr.jpeg"></a-img>
+    <a-img id="Panel004" src="https://raw.githubusercontent.com/WSPluta/webxr102/main/rbr.jpeg"></a-img>
+    <a-img id="Panel005" src="https://raw.githubusercontent.com/WSPluta/webxr102/main/rbr.jpeg"></a-img>
+    <a-img id="Panel006" src="https://raw.githubusercontent.com/WSPluta/webxr102/main/rbr.jpeg"></a-img>    
+    
+  <!-- Slides for the slidedeck -->
+    <a-img id="001" src="https://raw.githubusercontent.com/WSPluta/webxr102/main/rbr.jpeg"></a-img>
+    <a-img id="002" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/Cloud%20Predictions%202020-page-004.jpg"></a-img>
+    <a-img id="003" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/Cloud%20Predictions%202020-page-006.jpg"></a-img>
+    <a-img id="004" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/Cloud%20Predictions%202020-page-008.jpg"></a-img>
+    <a-img id="005" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/Cloud%20Predictions%202020-page-010.jpg"></a-img>
+    <a-img id="006" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/Cloud%20Predictions%202020-page-012.jpg"></a-img>
+    <a-img id="007" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/Cloud%20Predictions%202020-page-014.jpg"></a-img>
+    <a-img id="008" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/Cloud%20Predictions%202020-page-016.jpg"></a-img>
+    <a-img id="009" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/Cloud%20Predictions%202020-page-018.jpg"></a-img>
+    <a-img id="010" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/Cloud%20Predictions%202020-page-020.jpg"></a-img>
+    <a-img id="011" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/Cloud%20Predictions%202020-page-022.jpg"></a-img>
+    <a-img id="012" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/Cloud%20Predictions%202020-page-024.jpg"></a-img>
+
+<!-- videos to be shared aside of the doors - keep them below 2MB - 360 p resolution is fine -->
+
+       <video class="videos" id="video1" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/3DPR/video/Background%20SHort.mp4"  loop="true"></video>
+       <video class="videos" id="video2" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/3DPR/video/Redwood%20Watering.mp4"  loop="true"></video>
+
+ <!-- 3D assets - keep it as limited as possible -->
+       <a-asset-item id="logo" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/xrlablogo.gltf"></a-asset-item>
+      <a-asset-item id="3DNavMesh" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/navmesh.gltf"></a-asset-item>
+      <a-mixin id="arc" geometry="primitive: torus; arc: 180; radius: 3.5; radiusTubular : 0.05" material="color: #2f3640"></a-mixin>
+    <a-mixin id="arc2" geometry="primitive: torus; arc: 180; radius: 3; radiusTubular : 0.05" material="src:#walltexture; repeat: 2 20;" rotation="0 90 -90" position="0 3 -7" scale="1.5 1 140" ></a-mixin>
+    
+<!-- Textures -->   
+    <a-img id="sky" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/Daylight%20Box_0.png"></a-img> 
+    <a-img id="doortexture" src="./textures/doortexture.jpg "></a-img>
+    <a-img id="brick" src="./textures/brick.jpg "></a-img> 
+    <a-img id="floortexture" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/floortexture - Copy.jpg"> </a-img>
+    <a-img id="walltexture" src="https://raw.githubusercontent.com/sikaar/sikaar.github.io/master/xrlab/walltexture - Copy.jpg" > </a-img>
+  <!-- Logo to be displayed on top of the doors -->
+
+    <a-img id="ologo" src="./textures/otag.png"></a-img>
+    <a-img id="roomlogo2" src="./textures/small-logo.png"></a-img>
+  </a-assets>
+  
+
+ <!-- Poster Display Classic -->
+  <a-entity id="Panel1" position="-6 1.5 -5" class="poster-classic"> 
+      <a-box   material="color:white" scale="4 2.5 0.3" shadow="cast :true" opacity=0.5  position="0 .25 0"></a-box>
+      <a-plane class="poster" material="src: #Panel001" height="1.72" width="3.16" position="0 0.25 0.18" rotation="0 0 0" ></a-plane>
+     <a-plane class="frame" material="color: white" height="1.77" width="3.23" position="0 0.25 0.16" rotation="0 0 0" ></a-plane>
+      <a-box position="0 -1.25 0"  material="src: #walltexture; repeat: 2 .1; offset: 0 0.5" scale="4.2 0.5 0.5"  shadow="cast :true" ></a-box>
+      <a-entity light="color: #e7dbc1; intensity: 0.75; type: point; distance: 1" position="0 1.2 0.3" ></a-entity>
+        <a-box position="0 1.5 0.2"  color="black" scale="0.5 0.2 0.2"   ></a-box>
+    <a-box position="0 1.4 0.3"  color="black" scale="2 0.05 0.05"   ></a-box>
+    <a-box position="0 1.37 0.28"  color="white" scale="1.9 0.05 0.05"  material="emissiveIntensity: 2; emissive:#ffffff" >
+    </a-box>
+    <!-- Floor Anchor -->
+              <a-circle class="anchor collidable" position="0 -1.45 2" radius="0.3" material="src: #roomlogo2; transparent: true;" rotation="-90 0 0" animation="property: rotation;from : -90 0 0; to: -90 0 360; loop: true;easing: linear; dur: 10000">
+
+           <a-circle radius="0.4" position="0 0 -0.02" color="white" opacity="0.4" rotation="0 0 0">           
+          </a-circle></a-circle>
+  </a-entity>
+   <!-- Poster Display with Buttons  -->
+  <a-entity id="Panel2" position="0 1.5 -5" class="poster-buttons"> 
+      <a-box   material="color:white" scale="4 2.5 0.3" shadow="cast :true" opacity=0.5  position="0 .25 0"></a-box>
+      <a-plane class="poster" material="src: #Panel002" height="1.72" width="3.16" position="0 0.25 0.18" rotation="0 0 0" ></a-plane>
+     <a-plane class="frame" material="color: white" height="1.77" width="3.23" position="0 0.25 0.16" rotation="0 0 0" ></a-plane>
+      <a-box position="0 -1.25 0"  material="src: #walltexture; repeat: 2 .1; offset: 0 0.5" scale="4.2 0.5 0.5"   shadow="cast :true"></a-box>
+     <a-entity light="color: #e7dbc1; intensity: 0.75; type: point; distance: 1" position="0 1.2 0.3" ></a-entity>
+     <a-box position="0 1.5 0.2"  color="black" scale="0.5 0.2 0.2"   ></a-box>
+    <a-box position="0 1.4 0.3"  color="black" scale="2 0.05 0.05"   ></a-box>
+    <a-box position="0 1.37 0.28"  color="white" scale="1.9 0.05 0.05"  material="emissiveIntensity: 2; emissive:#ffffff" ></a-box>
+    <!-- Floor Anchor -->
+              <a-circle class="anchor collidable" position="0 -1.45 2" radius="0.3" material="src: #roomlogo2; transparent: true;" rotation="-90 0 0" animation="property: rotation;from : -90 0 0; to: -90 0 360; loop: true;easing: linear; dur: 10000">
+
+           <a-circle radius="0.4" position="0 0 -0.02" color="white" opacity="0.4" rotation="0 0 0">           
+          </a-circle></a-circle>
+    <!-- Button Set 
+      <a-circle position="-1 -0.75 0.2" radius="0.2" color="tomato"  onclick="on('0')">
+          <a-entity text="width: 2; color: #ffffff; value: HOME; align: center" background="color: #ffffff"></a-entity></a-circle>
+      <a-circle position="-0.5 -0.75 0.2" radius="0.2" color="tomato"  onclick="on('THE INNOVATION DESIGN')">          
+        <a-entity text="width: 1.5; color: #ffffff; value: INNOVATION; align: center" background="color: #ffffff"></a-entity></a-circle>
+      <a-circle position="0 -0.75 0.2" radius="0.2" color="tomato"  onclick="on('THE IT ARCHITECTURE')">          
+        <a-entity text="width: 2; color: #ffffff; value: IT; align: center" background="color: #ffffff"></a-entity></a-circle>
+      <a-circle position="0.5 -0.75 0.2" radius="0.2" color="tomato"  onclick="on('THE EMPOWERING APPS')">          
+        <a-entity text="width: 2; color: #ffffff; value: APPS; align: center" background="color: #ffffff"></a-entity></a-circle>
+      <a-circle position="1 -0.75 0.2" radius="0.2" color="tomato"  onclick="on('THE POWERING TECH')">          
+        <a-entity text="width: 2; color: #ffffff; value: TECH; align: center" background="color: #ffffff"></a-entity></a-circle>
+        -->
+  </a-entity>
+ 
+   <!-- Poster Display Classic 
+  <a-entity id="Panel3" position="6 1.5 -5"> 
+      <a-box   material="color:white" scale="4 2.5 0.3" shadow="cast :true" opacity=0.5  position="0 .25 0"></a-box>
+      <a-plane class="poster" material="src: #Panel003" height="1.72" width="3.16" position="0 0.25 0.18" rotation="0 0 0" ></a-plane>
+     <a-plane class="frame" material="color: white" height="1.77" width="3.23" position="0 0.25 0.16" rotation="0 0 0" ></a-plane>
+      <a-box position="0 -1.25 0"  material="src: #walltexture; repeat: 2 .1; offset: 0 0.5" scale="4.2 0.5 0.5"  shadow="cast :true" ></a-box>
+      <a-entity light="color: #e7dbc1; intensity: 0.75; type: point; distance: 1" position="0 1.2 0.3" ></a-entity>
+        <a-box position="0 1.5 0.2"  color="black" scale="0.5 0.2 0.2"   ></a-box>
+    <a-box position="0 1.4 0.3"  color="black" scale="2 0.05 0.05"   ></a-box>
+    <a-box position="0 1.37 0.28"  color="white" scale="1.9 0.05 0.05"  material="emissiveIntensity: 2; emissive:#ffffff" ></a-box>-->
+    <!-- Floor Anchor -->
+              <a-circle class="anchor collidable" position="0 -1.45 2" radius="0.3" material="src: #roomlogo2; transparent: true;" rotation="-90 0 0" animation="property: rotation;from : -90 0 0; to: -90 0 360; loop: true;easing: linear; dur: 10000">
+
+           <a-circle radius="0.4" position="0 0 -0.02" color="white" opacity="0.4" rotation="0 0 0">           
+          </a-circle></a-circle>
+  </a-entity>
+
+   <!-- Poster Display Classic 
+  <a-entity id="Panel4" position="6 1.5 5" rotation="0 180 0"> 
+      <a-box   material="color:white" scale="4 2.5 0.3" shadow="cast :true" opacity=0.5  position="0 .25 0"></a-box>
+      <a-plane class="poster" material="src: #Panel004" height="1.72" width="3.16" position="0 0.25 0.18" rotation="0 0 0" ></a-plane>
+     <a-plane class="frame" material="color: white" height="1.77" width="3.23" position="0 0.25 0.16" rotation="0 0 0" ></a-plane>
+      <a-box position="0 -1.25 0"  material="src: #walltexture; repeat: 2 .1; offset: 0 0.5" scale="4.2 0.5 0.5"  shadow="cast :true" ></a-box>
+      <a-entity light="color: #e7dbc1; intensity: 0.75; type: point; distance: 1" position="0 1.2 0.3" ></a-entity>
+        <a-box position="0 1.5 0.2"  color="black" scale="0.5 0.2 0.2"   ></a-box>
+    <a-box position="0 1.4 0.3"  color="black" scale="2 0.05 0.05"   ></a-box>
+    <a-box position="0 1.37 0.28"  color="white" scale="1.9 0.05 0.05"  material="emissiveIntensity: 2; emissive:#ffffff" ></a-box>-->
+    <!-- Floor Anchor -->
+              <a-circle class="anchor collidable" position="0 -1.45 2" radius="0.3" material="src: #roomlogo2; transparent: true;" rotation="-90 0 0" animation="property: rotation;from : -90 0 0; to: -90 0 360; loop: true;easing: linear; dur: 10000">
+
+           <a-circle radius="0.4" position="0 0 -0.02" color="white" opacity="0.4" rotation="0 0 0">           
+          </a-circle></a-circle>
+  </a-entity>
+
+ <!-- Poster Display  -->
+  <a-entity id="Panel5" position="0 1.5 5" rotation="0 180 0"> 
+      <a-box   material="color:white" scale="4 2.5 0.3" shadow="cast :true" opacity=0.5  position="0 .25 0"></a-box>
+      <a-plane class="poster" material="src: #Panel005" height="1.72" width="3.16" position="0 0.25 0.18" rotation="0 0 0" ></a-plane>
+     <a-plane class="frame" material="color: white" height="1.77" width="3.23" position="0 0.25 0.16" rotation="0 0 0" ></a-plane>
+      <a-box position="0 -1.25 0"  material="src: #walltexture; repeat: 2 .1; offset: 0 0.5" scale="4.2 0.5 0.5"   shadow="cast :true"></a-box>
+      <a-entity light="color: #e7dbc1; intensity: 0.75; type: point; distance: 1" position="0 1.2 0.3" ></a-entity>
+        <a-box position="0 1.5 0.2"  color="black" scale="0.5 0.2 0.2"   ></a-box>
+    <a-box position="0 1.4 0.3"  color="black" scale="2 0.05 0.05"   ></a-box>
+    <a-box position="0 1.37 0.28"  color="white" scale="1.9 0.05 0.05"  material="emissiveIntensity: 2; emissive:#ffffff" ></a-box>
+    <!-- Floor Anchor -->
+            <a-circle class="anchor collidable" position="0 -1.45 2" radius="0.3" material="src: #roomlogo2; transparent: true;" rotation="-90 0 0" animation="property: rotation;from : -90 0 0; to: -90 0 360; loop: true;easing: linear; dur: 10000">
+
+           <a-circle radius="0.4" position="0 0 -0.02" color="white" opacity="0.4" rotation="0 0 0">           
+          </a-circle></a-circle>
+  </a-entity>
+  
+   <!-- Poster Display Classic -->
+    <a-entity id="Panel6" position="-6 1.5 5" rotation="0 180 0"> 
+      <a-box   material="color:white" scale="4 2.5 0.3" shadow="cast :true" opacity=0.5  position="0 .25 0"></a-box>
+      <a-plane class="poster" material="src: #Panel006" height="1.72" width="3.16" position="0 0.25 0.18" rotation="0 0 0" ></a-plane>
+     <a-plane class="frame" material="color: white" height="1.77" width="3.23" position="0 0.25 0.16" rotation="0 0 0" ></a-plane>
+      <a-box position="0 -1.25 0"  material="src: #walltexture; repeat: 2 .1; offset: 0 0.5" scale="4.2 0.5 0.5"  shadow="cast :true" ></a-box>
+      <a-entity light="color: #e7dbc1; intensity: 0.75; type: point; distance: 1" position="0 1.2 0.3" ></a-entity>
+        <a-box position="0 1.5 0.2"  color="black" scale="0.5 0.2 0.2"   ></a-box>
+    <a-box position="0 1.4 0.3"  color="black" scale="2 0.05 0.05"   ></a-box>
+    <a-box position="0 1.37 0.28"  color="white" scale="1.9 0.05 0.05"  material="emissiveIntensity: 2; emissive:#ffffff" >
+    </a-box>
+    <!-- Floor Anchor -->
+          <a-circle class="anchor collidable" position="0 -1.45 2" radius="0.3" material="src: #roomlogo2; transparent: true;" rotation="-90 0 0" animation="property: rotation;from : -90 0 0; to: -90 0 360; loop: true;easing: linear; dur: 10000" >
+
+           <a-circle radius="0.4" position="0 0 -0.02" color="white" opacity="0.4" rotation="0 0 0">           
+          </a-circle></a-circle>
+
+  </a-entity>
+  
+<!-- Building Structure -->
+ <a-entity>
+<!--
+      <a-box class="wall" position="0 2.99 -7.5"  scale="20.2 5.8 0.1"  color="white" shadow="receive :true" material="src : #walltexture; repeat : 4 1;"></a-box>
+      <a-box class="wall" position="0 2.99 7.5"  scale="20.2 5.8 0.1" color="white" shadow="receive :true" material="src : #walltexture; repeat : 4 1;"></a-box>
+      <a-box class="wall" position="-10 2.99 0"  color="white" scale="0.1 5.8 15.2"   shadow="receive :true" material="src : #walltexture; repeat : 3 1;"></a-box>
+      <a-box class="wall" position="10 2.99 0"  color="white" scale="0.1 5.8 15.2"  shadow="receive :true" material="src: #walltexture; repeat: 3 1"></a-box>
+  
+-->
+       <a-entity mixin="arc2" rotation="0 90 -90" position="0 4.2 -6.5" ></a-entity>
+      
+      <a-entity  mixin="arc2" rotation="0 -90 -90" position="0 4.2 6.5"></a-entity>
+
+      
+      <a-entity  mixin="arc2" rotation="0 0 -90" position="9 4.2 0"></a-entity>
+
+      <a-entity  mixin="arc2" rotation="0 180 -90" position="-9 4.2 0"></a-entity>
+
+
+      <a-box class="lowbar" position="0 0 -7.2"  color="black" scale="20.2 .2 0.1"   ></a-box>
+      <a-box class="lowbar" position="0 0 7.2"  color="black" scale="20.2 .2 0.1"   ></a-box>
+      <a-box class="lowbar" position="-9.7 0 0"  color="black" scale="0.1 .2 15.2"   ></a-box>
+      <a-box class="lowbar" position="9.7 0 0"  color="black" scale="0.1 .2 15.2"   ></a-box>
+      
+      <a-box class="highbar" position="0 6.5 -7.2"  color="white" scale="18 .2 0.1" material="emissiveIntensity: 2; emissive:#ffffff"  ></a-box>
+      <a-box class="highbar" position="0 6.5 7.2"  color="white" scale="18 .2 0.1" material="emissiveIntensity: 2; emissive:#ffffff"  ></a-box>
+      <a-box class="highbar" position="-9.7 6.5 0"  color="white" scale="0.1 .2 13"  material="emissiveIntensity: 2; emissive:#ffffff" ></a-box>
+      <a-box class="highbar" position="9.7 6.5 0"  color="white" scale="0.1 .2 13" material="emissiveIntensity: 2; emissive:#ffffff"  ></a-box>
+
+  </a-entity>
+ <!-- XRLAB logo ;)   -->
+  
+  <a-entity id="xrlablogo" gltf-model="#logo" position="0 8.5 0" scale="0.15 0.15 0.15" animation="property: rotation;from : 0 0 0; to: 0 360 0; loop: true;easing: linear; dur: 10000" onclick="window.open('https://xrlab.ddns.net','_self')"></a-entity>
+
+
+ <!-- room 3D logo   
+<a-entity rotation="0 0 90" position="0 1.6 0">
+  <a-entity id="room3dlogo" gltf-model="#InternationalSpaceStation"  scale="0.06 0.06 0.06" animation="property: rotation;from : 0 0 -45; to: -360 0 -45; loop: true;easing: linear; dur: 100000">
+    
+<a-sphere position ="0 2.5 -20" rotation="0 0 45" opacity="0.15" color="#F79F1F" radius=10 onclick="on('Go to HCM')"> 
+  <a-entity position="16 0 0" rotation="90 90 0" text="width: 90; color: #ffffff; value: GO TO \nHCM; align: center; " background="color: #ffffff"></a-entity>
+  <a-entity position="16 0 0" rotation="-90 90 180" text="width: 90; color: #ffffff; value: GO TO \nHCM; align: center; " background="color: #ffffff"></a-entity>
+</a-sphere>
+<a-sphere position ="0 2.5 0" rotation="0 0 45" opacity="0.15" color="#C4E538" radius=10 onclick="on('Go to MAIN')"> 
+  <a-entity position="16 0 0" rotation="90 90 0" text="width: 90; color: #ffffff; value: GO TO \nMAIN; align: center; " background="color: #ffffff"></a-entity>
+  <a-entity position="16 0 0" rotation="-90 90 180" text="width: 90; color: #ffffff; value: GO TO \nMAIN; align: center; " background="color: #ffffff"></a-entity>
+</a-sphere>
+<a-sphere position ="0 2.5 20" rotation="0 0 45" opacity="0.15" color="#12CBC4" radius=10 onclick="on('Go to ERP')"> 
+  <a-entity position="16 0 0" rotation="90 90 0" text="width: 90; color: #ffffff; value: GO TO \nERP; align: center; " background="color: #ffffff"></a-entity>
+  <a-entity position="16 0 0" rotation="-90 90 180" text="width: 90; color: #ffffff; value: GO TO \nERP; align: center; " background="color: #ffffff"></a-entity>
+</a-sphere>
+
+
+  </a-entity>
+</a-entity>
+
+-->
+     
+  <!-- Wall Lights -->
+  
+  <a-entity light="color: #e7dbc1; intensity: 0.3; type: point; distance: 6" position="-3 2.5 -6.5" ></a-entity>
+  <a-box scale="0.5 0.5 0.5" position="-3 2.5 -7.5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+  <a-box scale="0.55 0.2 0.55" position="-3 2.5 -7.5" material="color: black"></a-box>
+
+  <a-entity light="color: #e7dbc1; intensity: 0.3; type: point; distance: 6" position="-3 2.5 6.5" ></a-entity> 
+  <a-box scale="0.5 0.5 0.5" position="-3 2.5 7.5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+  <a-box scale="0.55 0.2 0.55" position="-3 2.5 7.5" material="color: black"></a-box>
+
+  <a-entity light="color: #e7dbc1; intensity: 0.3; type: point; distance: 6" position="3 2.5 -6.5" ></a-entity>
+  <a-box scale="0.5 0.5 0.5" position="3 2.5 -7.5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+  <a-box scale="0.55 0.2 0.55" position="3 2.5 -7.5" material="color: black"></a-box>
+
+  <a-entity light="color: #e7dbc1; intensity: 0.3; type: point; distance: 6" position="3 2.5 6.5" ></a-entity> 
+  <a-box scale="0.5 0.5 0.5" position="3 2.5 7.5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+  <a-box scale="0.55 0.2 0.55" position="3 2.5 7.5" material="color: black"></a-box>
+  
+  
+  <!-- Roof  -->
+  
+      <a-entity mixin="arc" position="-3 7 0" rotation="0 90 0"></a-entity>
+      <a-entity mixin="arc" position="-7 7 0" rotation="0 90 0"></a-entity>
+      <a-entity mixin="arc" position="0 7 0" rotation="0 90 0"></a-entity>
+      <a-entity mixin="arc" position="7 7 0" rotation="0 90 0"></a-entity>
+      <a-entity mixin="arc" position="3 7 0" rotation="0 90 0"></a-entity>
+ 
+<!-- Ceiling -->
+  <a-entity id="ceiling" position="0 7.5 0">
+      <a-box position="8 0 0"  material="src:#walltexture; repeat: 2 20;" scale="4.5 1 15"   ></a-box>
+      <a-box position="-8 0 0"  material="src:#walltexture; repeat: 2 20;" scale="4.5 1 15"  ></a-box>
+      <a-box position="0 0 5.25"  material="src:#walltexture; repeat: 2 20;" scale="12 1 4.5"  ></a-box>
+      <a-box position="0 0 -5.25"  material="src:#walltexture; repeat: 2 20;" scale="12 1 4.5"  ></a-box> 
+         <!-- Ceiling Lights -->     
+          <a-entity id="ceiling-lights" position="0 -0.45 0">
+          <a-box scale="0.5 0.2 0.5" position="8 0 3" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="8 0 1" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="8 0 -1" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="8 0 -3" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>  
+          <a-box scale="0.5 0.2 0.5" position="5 0 5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="3 0 5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="1 0 5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="-1 0 5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="-3 0 5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="-5 0 5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="5 0 -5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="3 0 -5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="1 0 -5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="-1 0 -5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="-3 0 -5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="-5 0 -5" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="-8 0 3" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="-8 0 1" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="-8 0 -1" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          <a-box scale="0.5 0.2 0.5" position="-8 0 -3" material="emissiveIntensity: 2; emissive:#ffffff"></a-box>
+          </a-entity>
+         
+ </a-entity>
+  
+  
+<!-- Floor -->
+      <a-entity gltf-model="#3DNavMesh" position="0 -0.1 0" scale="1 1 0.6" visible="false" nav-mesh></a-entity>
+      <a-plane id="floor" material="src: #floortexture; repeat: 8 6" height="15.4" width="20.4" rotation="-90 0 0" shadow="receive :true"></a-plane>
+      <a-plane position="0 0.05 0" width=3 height=1.5 material="src: #ologo;" rotation="-90 0 0" opacity=0.9></a-plane>
+      <!--
+       <a-plane material="src: #roomlogo2; transparent: true;" opacity="0.9" height="1" width="1" rotation="-90 0 0" position="2 0.05 1" ></a-plane>
+      <a-plane material="src: #roomlogo2; transparent: true;" opacity="0.9" height="1" width="1" rotation="-90 0 0" position="-4 0.05 -2" ></a-plane>
+    -->
+
+ <!-- Small Wall TV Screens
+
+      <a-plane material="src: #video1" position="-9.88 2 4.5" height="2" width="3" rotation="0 90 0" ></a-plane> 
+        <a-plane material="color:black;" position="-9.9 2 4.5" height="2.1" width="3.1" rotation="0 90 0" ></a-plane>
+   --> 
+
+  <!-- room logo -->
+ <a-entity id="doorlogo" position="-9.9 4 0" >
+ <a-plane material="src: #roomlogo;" opacity="0.9" height="1" width="2" rotation="0 90 0" ></a-plane>
+ </a-entity>
+  
+  
+ <!-- Door to next room -->
+ <a-entity id="door" position="-10 1.25 0">
+ <a-box class="door" position="0.2 0 0.75"  material="src:#walltexture; offset:1 0.5;repeat: .5 1;" scale="0.1 2.5 1.475" ></a-box> 
+ <a-box class="door" position="0.2 0 -0.75"  material="src:#walltexture; offset:0.5 0.5;repeat: .5 1;" scale="0.1 2.5 1.475" ></a-box>  
+  <a-box class="door" position="0 0 -1.55"  material="src:#walltexture;" scale="1 2.5 0.2" ></a-box>  
+   <a-box class="door" position="0 0 1.55"  material="src:#walltexture;" scale="1 2.5 0.2" ></a-box>  
+  <a-box class="door" position="0 1.25 0" material="src:#walltexture;" scale="1 0.2 3.3" ></a-box> 
+  <a-plane material="color:black;" height="2.5" width="0.2" rotation="0 90 0" ></a-plane>
+</a-entity>  
+  
+  
+ <!-- Slideshow screen -->  
+ <a-entity id="slideshow" position="9.8 3 0" rotation="0 -90 0">
+      <a-plane id="background" class="poster" material="src: #001;" position="0 0 0.2" height="4.5" width="8" ></a-plane>
+      <a-plane color="black" position="0 0 0" height="4.9" width="8.4" rotation="0 0 0"  ></a-plane>
+      <a-triangle id ="previous" class="collidable" position="-4.5 0 0.03" rotation ="0 0 90" color="tomato"></a-triangle>
+      <a-triangle id ="next" class="collidable" position="4.5 0 0.03" rotation ="0 0 -90" color="tomato"></a-triangle>
+   
+     <!-- Floor Anchor -->
+      <a-circle class="anchor collidable" position="0.2 -2.9 5" radius="0.3" material="src: #roomlogo2; transparent: true;" rotation="-90 0 0" animation="property: rotation;from : -90 0 0; to: -90 0 360; loop: true;easing: linear; dur: 10000">
+      <a-circle radius="0.4" position="0 0 -0.02" color="white" opacity="0.4" rotation="0 0 0">           
+      </a-circle></a-circle>
+  
+ </a-entity>
+
+
+<!-- Scene Lighting -->
+  
+ <a-entity light="color: #ffffff; type: ambient; intensity: 0.65 "></a-entity>
+ <a-entity light="color: #c8e2e5; type: directional; intensity: 0.5; castShadow : true " position="-4 4.5 1"></a-entity>
+ <a-entity light="color: #e5dcc8; type: directional; intensity: 0.5; castShadow : true " position="4 4.5 -1"></a-entity>
+
+ 
+  <!-- Animated sky with clouds -->
+  <a-sky src="#sky" animation="property: rotation;from : 0 0 0; to: 0 -360 0; loop: true;easing: linear; dur: 1000000"></a-sky> 
+ 
+<!-- Oculus support -->
+  
+  <!-- the camera -->
+  <a-entity id="rig" position="-6.8 0 0" rotation="0 -90 0" movement-controls="constrainToNavMesh: true" >
+     <a-entity oculus-touch-controls="hand: right" laser-controls="hand: right" raycaster="objects: .collidable;interval:5" line="color: #149ca3; opacity: 0.5"></a-entity>
+      <a-entity oculus-touch-controls="hand: left" laser-controls="hand: left" raycaster="objects: .collidable;interval:5" line="color: #149ca3; opacity: 0.5"></a-entity>
+      <a-entity camera id="thecamera" look-controls position="0 1.6 0" >
+        <a-entity id="thewebcam" visible="false">
+            <a-circle material="src: #webcam" radius="0.2" position="1 0.5 -1"></a-circle>
+        <a-circle radius="0.25" position="1.1 0.55 -1.1" animation="property: opacity; from:0; to:1; dir: alternate; loop: true; dur: 1000;" material="color: white; emissive: #FFFFFF; emissiveIntensity: 0.3"></a-circle>
+          </a-entity>
+      </a-entity>
+  </a-entity>
+  
+  <div class="a-loader-title" style="display: none;">XRLAB 3DPR</div></a-scene>
+</body>
+</html>
